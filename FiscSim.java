@@ -43,8 +43,8 @@ public class FiscSim {
 	{
 		DecimalFormat df = new DecimalFormat("#.00");
 		
-		double dLossAmount = 0.4;			// How much you keep in a loss in % (Less than 1)
-		double dWinAmount = 0.5;			// How much you gain in a win in % (Greater than 1)
+		double dLossAmount = 0.4;			// How much you keep in a loss in %
+		double dWinAmount = 0.35;			// How much you gain in a win in %
 		
 		double dLossRate = 0.25;			// Percentage of the time you lose
 		double dWinRate = 1 - dLossRate;	//Percentage of the time you win
@@ -55,7 +55,7 @@ public class FiscSim {
 		double dPercentToKeep = dKelly;
 		double dPercentFromKeep = 1 - dKelly;
 		
-		double dWealth = 1000;
+		double dWealth = 1500;
 		double dInvest = dWealth * dKelly;
 		double dKeep = dWealth - dInvest;
 		
@@ -78,6 +78,21 @@ public class FiscSim {
 				"\tRatio: " + df.format(dRatio) + "\tKelly: " + dKelly);
 		
 		
+		
+		
+		
+		
+				// BEGIN MULTITEST
+				double dMaxKeep = 0;
+				double dMinKeep = 0;
+				for(int j = 0; j < 100; j++){
+					dInvest = dWealth * dKelly;
+					dKeep = dWealth - dInvest;
+					
+					
+					
+					
+					
 			for(int i = 0; i < 52; i++){
 				if(CheckWinOrLose(dLossRate)) {
 					abc = 5;
@@ -98,11 +113,43 @@ public class FiscSim {
 				
 				System.out.println("Invest: " + df.format(dInvest) + "\tKeep: " + df.format(dKeep) + 
 					"\tChange: " + df.format(dChange) + "\t " + abc);
+					
+					
+					
+					
+					
+					
 			}
 			int iNumTrades = iNumLoss + iNumWin;
 			System.out.println("True Loss Percentage: " + (double)iNumLoss/iNumTrades);
 			PrintOut.println("True Loss Percentage: " + (double)iNumLoss/iNumTrades);
-		
+			
+			
+			
+			
+			
+			
+					if(j == 0)
+					{
+						dMaxKeep = dKeep;
+						dMinKeep = dKeep;
+					}
+					if(dMaxKeep < dKeep)
+					{
+						dMaxKeep = dKeep;
+					}
+					else if(dMinKeep > dKeep)
+					{
+						dMinKeep = dKeep;
+					}
+			
+
+				}	// END MULTI TEST
+				System.out.println("Max Keep: " + df.format(dMaxKeep) + "\tMin Keep: " + df.format(dMinKeep));
+				PrintOut.println("Max Keep: " + df.format(dMaxKeep) + "\tMin Keep: " + df.format(dMinKeep));
+				
+				
+				
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
